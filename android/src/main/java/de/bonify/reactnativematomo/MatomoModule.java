@@ -97,10 +97,44 @@ public class MatomoModule extends ReactContextBaseJavaModule implements Lifecycl
     public void trackCampaign(String name, String keyboard) {}
 
     @ReactMethod
-    public void trackContentImpression(@NonNull String name, @NonNull ReadableMap values) {}
+    public void trackContentImpression(@NonNull String name, @NonNull ReadableMap values) {
+        String target = null;
+        String piece = null;
+
+        if (values.hasKey("piece") && !values.isNull("piece")) {
+            piece = (String)values.getString("piece");
+        }        
+        if (values.hasKey("target") && !values.isNull("target")) {
+            target = (String)values.getString("target");
+        }
+        getTrackHelper().track()
+            .impression(name)
+            .piece(piece)
+            .target(target)
+            .with(mMatomoTracker);
+    }
 
     @ReactMethod
-    public void trackContentInteraction(@NonNull String name, @NonNull ReadableMap values) {}
+    public void trackContentInteraction(@NonNull String name, @NonNull ReadableMap values) {
+        String interaction = null;
+        String target = null;
+        String piece = null;
+
+        if (values.hasKey("interaction") && !values.isNull("interaction")) {
+            interaction = (String)values.getString("interaction");
+        }
+        if (values.hasKey("piece") && !values.isNull("piece")) {
+            piece = (String)values.getString("piece");
+        }        
+        if (values.hasKey("target") && !values.isNull("target")) {
+            target = (String)values.getString("target");
+        }
+        getTrackHelper().track()
+                .interaction(name, interaction)
+                .piece(piece)
+                .target(target)
+                .with(mMatomoTracker);
+    }
 
     @ReactMethod
     public void trackSearch(@NonNull String query, @NonNull ReadableMap values) {}

@@ -34,6 +34,9 @@ proguard/
 # Android Studio captures folder
 captures/
 
+# VS Code
+.vscode
+
 # Intellij
 .idea
 

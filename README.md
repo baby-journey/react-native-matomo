@@ -18,6 +18,24 @@ Integrating Matomo into your React Native app
 
 ### Include the library
 
+1. Yarn install (Refer below). `a605e595be8c5e79ec08f2dde59d01a87cba4833` is the commit hash pointed to the latest release tag. Change this as you need.
+
+`yarn add baby-journey/react-native-matomo#a605e595be8c5e79ec08f2dde59d01a87cba4833`
+
+2. Create a `react-native-config.js` file and disable autolinking by adding this
+
+```javascript
+module.exports = {
+  dependencies: {
+    'react-native-matomo': {
+      platforms: {
+        ios: null, // this will disable autolinking for this package on iOS
+      },
+    },
+  },
+};
+
+```
 #### iOS
 
 #### iOS (with cocoapods)
